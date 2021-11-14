@@ -1,0 +1,52 @@
+
+
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm" id="mainNav">
+            <div class="container px-5">
+                <a class="navbar-brand fw-bold" href=<%=root_path %>>BiblioApp</a>
+                
+                <%if user_signed_in? %>
+                <span class="navbar-text">
+                    Sesión iniciada como <%= current_user.name%>
+                </span>
+                <%end%>
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                        <li class="nav-item"><a class="nav-link me-lg-3" href=<%=books_path%>  >Libros</a></li>
+                        <%if user_signed_in?%>
+                            <%if current_user.admin?%>
+                                <li class="nav-item"><a class="nav-link me-lg-3" href=<%=autors_path%>  >Autores </a></li>
+                            <%else%>
+                                <li class="nav-item"><a class="nav-link me-lg-3" href=<%=book_lends_path%> > Mis Libros Prestados </a></li>
+                            <%end%>
+                        <%end%>
+                        
+                    </ul>
+
+                    <%if user_signed_in?%>
+
+                        <a class="btn btn-danger rounded-pill px-3 mb-2 mb-lg-0" href= <%=destroy_user_session_path%> data-method="delete" >
+                            <span class="d-flex align-items-center">
+                                <i class="bi-chat-text-fill me-2"></i>
+                                <span class="small">Cerrar Sesión</span>
+                            </span>
+                        </a>
+                    <%else%>
+                        <a class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" href= <%= new_user_session_path %>>
+                            <span class="d-flex align-items-center">
+                                <i class="bi-chat-text-fill me-2"></i>
+                                <span class="small">Iniciar Sesión</span>
+                            </span>
+                        </a>
+                        <a class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" href= <%= new_user_registration_path %>>
+                            <span class="d-flex align-items-center">
+                                <i class="bi-chat-text-fill me-2"></i>
+                                <span class="small">Registrarse</span>
+                            </span>
+                        </a>
+
+                    <%end%>
+                </div>
+            </div>
+        </nav>

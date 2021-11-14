@@ -1,0 +1,12 @@
+<%= simple_form_for book do |f| %>
+  
+  <%= f.input :name%>
+  <%= f.input :pub_date, start_year: 1800, end_year: 2021%>
+  <%= f.input :stock%>
+  <%= f.association :autor%>
+  <%= f.association :categories, as: :check_boxes, item_wrapper_class:'inline' %>
+  <%= f.button :submit,'Crear autor', class: 'btn btn-success' %>
+
+<% end %>
+
+

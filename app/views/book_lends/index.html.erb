@@ -1,0 +1,43 @@
+
+
+<h1>Lista de libros prestados</h1>
+
+<%if @book_lends.count == 0%>
+<h3> No tienes nungún libro prestado, pide uno ya!!!! </h3>
+
+<%else%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Libro</th>
+      <th>Autor</th>
+      <th>Fecha de prestamo</th>
+      <th>Fecha de devolución</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% puts @book_lends %>
+    
+
+        <% @book_lends.each do |book_lend| %>
+        <tr>
+            <td><%= book_lend.book.name %></td>
+            <td><%= book_lend.book.autor.name %></td>
+            <td><%= book_lend.start_date %></td>
+            <td><%= book_lend.end_date %></td>
+            </td>
+        </tr>
+        <% end %>
+
+
+
+  </tbody>
+</table>
+
+<br>
+
+
+<%end%>
+

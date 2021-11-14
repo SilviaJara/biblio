@@ -1,0 +1,19 @@
+
+<h2>
+
+Pedir prestado: <%= @book.name%>
+
+</h2>
+
+<%= simple_form_for @book_lend do |f| %>
+  
+  
+  <%= f.input :book_id, input_html: {id: 'book_id',value: @book.id, type:"hidden"}, label: '-' , readonly: true %>
+  <%= f.input :user_id, input_html: {id: 'user_id',value: current_user.id, type:"hidden" }, label: '-', readonly: true%>
+  <%= f.input :start_date, input_html: {id: 'start_date',value: Date.current}, readonly: true%>
+  <%= f.input :end_date%>
+  <%= f.button :submit %>
+
+
+
+<% end %>

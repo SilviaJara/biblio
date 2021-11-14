@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+autor1:
+  name: autor1
+
+autor2:
+  name: autor2

@@ -1,0 +1,10 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+romance:
+  name: Romance
+
+aventura:
+  name: Aventura
+misterio:
+  name: Misterio
+

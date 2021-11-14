@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @book.name %>
+</p>
+
+<p>
+  <strong>Pub date:</strong>
+  <%= @book.pub_date %>
+</p>
+
+<p>
+  <strong>Autor:</strong>
+  <%= @book.autor.name %>
+</p>
+<p>
+  <strong>Stock:</strong>
+  <%= @book.stock %>
+</p>
+<p>
+  <strong>Categorias:</strong>
+  <% @book.categories.each do |category| %>
+    <%=category.name  %>, 
+  <% end  %>
+</p>
+
+ <% if user_signed_in? && current_user.admin && @book_lends != nil%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Nombre</th>
+      <th>Fecha Inicio</th>
+      <th>Fecha Fin</th>
+      <th>Estado</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @book_lends.each do |book_lend| %>
+      <tr>
+        <td><%= book_lend.user.email %></td>
+        <td><%= book_lend.user.name %></td>
+        <td><%= book_lend.start_date %></td>
+        <td><%= book_lend.end_date %></td>
+        <td>
+          <%if book_lend.end_date < Date.current%>
+            Atrasado
+          <%end%>
+        </td>
+        <td><%= link_to 'Devolución', {:controller => "book_lends",
+                                   :action => "return_book", 
+                                   :lend_id => book_lend.id}, method: 'patch', class: "btn btn-sm btn-success" %>    </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%end%>
+
+
+
+<% if user_signed_in? && current_user.admin %>
+<%= link_to 'Edit', edit_book_path(@book) %> 
+<%end%>
+
+
+<%= link_to 'Back', books_path %>
